@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {wordpressLink} from './settings/Settings'
+
+import Single from './templates/Single';
+import Home from './templates/Home';
+import Main from './templates/Main';
+import Notfound from './templates/Notfound';
+import Cooperate from './templates/Cooperate';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>react-src/src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+       <Route exact path={wordpressLink} component={Home} />
+       <Route exact path={wordpressLink + 'pages/main'} component={Main} />
+       <Route exact path={wordpressLink + 'pages/wspolpraca'} component={Cooperate} />
+       <Route path={wordpressLink + ':slug'} component={Single} />
+       <Route component={Notfound} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
