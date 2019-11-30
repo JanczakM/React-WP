@@ -24,19 +24,9 @@ class Single extends React.Component {
           this.setState({
             title: ReactHtmlParser(response.data[0].title.rendered),
             content: ReactHtmlParser(response.data[0].content.rendered),
+            image: response.data[0].featured_img.url,
+            imageAlt: response.data[0].featured_img.alt,
           })
-          Axios
-            .get(response.data[0]._links['wp:featuredmedia'][0].href)
-            .then(res => {
-                  this.setState({
-                    image: res.data.guid.rendered,
-                    imageAlt: res.data.alt_text,
-                  })
-            })
-            .catch(err => {
-              console.log(err.message);
-            });
-
         })
         .catch(err => {
           console.log(err.message);
@@ -45,7 +35,7 @@ class Single extends React.Component {
 
   render(){
     return (
-      <div className='Post'>
+      <div>
         <img src={this.state.image} alt={this.state.imageAlt}></img>
         <h1>{this.state.title}</h1>
         <div>{this.state.content}</div>

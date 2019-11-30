@@ -2,7 +2,7 @@ import React from 'react';
 
 const Cooperate = (props) => {
     return (
-        <div className='Post'>
+        <div>
             Współpraca
         </div>
     )

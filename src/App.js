@@ -5,7 +5,6 @@ import {wordpressLink} from './settings/Settings'
 
 import Single from './templates/Single';
 import Home from './templates/Home';
-import Main from './templates/Main';
 import Notfound from './templates/Notfound';
 import Cooperate from './templates/Cooperate';
 
@@ -14,7 +13,6 @@ function App() {
     <BrowserRouter>
       <Switch>
        <Route exact path={wordpressLink} component={Home} />
-       <Route exact path={wordpressLink + 'pages/main'} component={Main} />
        <Route exact path={wordpressLink + 'pages/wspolpraca'} component={Cooperate} />
        <Route path={wordpressLink + ':slug'} component={Single} />
        <Route component={Notfound} />

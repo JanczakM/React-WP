@@ -2,7 +2,7 @@ import React from 'react';
 
 const Notfound = (props) => {
     return (
-        <div className='Post'>
+        <div>
             Nie ma takiej strony :-(
         </div>
     )
