@@ -3,6 +3,7 @@
 @import './home.scss';
 @import './header.scss';
 @import './button.scss';
+@import './footer.scss';
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -31,6 +32,10 @@ section {
 a {
   text-decoration: none;
   color: $color-text;
+}
+
+.underlined {
+  text-decoration: underline;
 }
 
 .container {

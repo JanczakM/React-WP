@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import PostBox from '../components/PostBox';
 import BookingMain from '../components/BookingMain';
 import MainHeader from '../components/MainHeader';
-import {wordpressLink} from '../settings/Settings';
+import Footer from '../components/Footer';
 import AdSense from 'react-adsense';
 import Axios from 'axios';
 
@@ -14,7 +14,9 @@ class Home extends React.Component {
       newPosts: [],
       seasonPosts: [],
       babyPosts: [],
+      seasonMsg: '',
     };
+    this.fetchseasonData(new Date().getMonth() + 1);
   }
 
   componentDidMount() {
@@ -54,7 +56,45 @@ class Home extends React.Component {
     });
   }
 
+  fetchseasonData(month){
+    let seasonMsg, seasonTag;
+
+    if (month === 12 || month === 1 || month === 2) {
+      seasonMsg = 'Inspiracje na zimowe ferie';
+      seasonTag = 18;
+    }
+    else if ((month > 9) && (month < 12)) {
+      seasonMsg = 'Dokąd uciec od jesiennej szarugi?';
+      seasonTag = 139;
+    }
+    else if ((month > 5) && (month <= 9)){
+      seasonMsg = 'Pomysły na wakacyjne wyjazdy';
+      seasonTag = 141;
+    }
+    else {
+      seasonMsg = 'Podróżniczy lifestyle';
+      seasonTag = 140;
+    }
+
+    Axios
+    .get('https://aktywnepodroze.pl/wp-json/wp/v2/posts/?tags=' + seasonTag)
+    .then(response => {
+      const slicedResp = response.data.slice(0,3);
+      const posts = [];
+      for(let post of slicedResp){
+        posts.push(post);
+      }
+      this.setState({seasonPosts: posts})
+      this.setState({seasonMsg: seasonMsg})
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+  }
+
+
   render(){
+    console.log(this.state);
       return (
           <div>
             <MainHeader />
@@ -93,7 +133,17 @@ class Home extends React.Component {
                   />
                 </div>
               </section>
-              <Link to={wordpressLink + 'pages/wspolpraca'}>Współpraca</Link>
+              <section>
+                <div className='container'>
+                  <h2 className='section-title'>{this.state.seasonMsg}</h2>
+                  <div className='posts-section'>
+                    {this.state.seasonPosts.map(post => {
+                      return <PostBox key={post.id} {...post} />
+                    })}
+                  </div>
+                </div>
+              </section>
+              <Footer />
           </div>
       )
   }

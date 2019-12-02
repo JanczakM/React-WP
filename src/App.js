@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/global.scss';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import {wordpressLink} from './settings/Settings'
+import {wordpressLink} from './settings/Settings';
 
 import Single from './templates/Single';
 import Home from './templates/Home';
