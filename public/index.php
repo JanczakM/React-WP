@@ -7,10 +7,11 @@
 <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Hind|Courgette&display=swap" rel="stylesheet" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-wptheme"
+      content="Aktywne podróże - blog o pasji do podróżowania i aktywnego spędzania czasu"
     />
     <link rel="apple-touch-icon" href="<?php echo $TEMPLATE_PATH; ?>/logo192.png" />
     <!--
@@ -31,11 +32,11 @@
         work correctly both with client-side routing and a non-root public URL.
         Learn how to configure a non-root public URL by running `npm run wpbuild`.
     -->
-    <title>React WordPress Theme</title>
+    <title>Aktywne podróże</title>
 </head>
     <body>
     <noscript>
-        You need to enable JavaScript to run this app.
+        Aplikacja wymaga włączonej obsługi javascriptu.
     </noscript>
     <div id="root"></div>
     <!--
@@ -48,5 +49,14 @@
         To begin the development, run `npm run wpstart` or `yarn wpstart`.
         To create a production bundle, use `npm run wpbuild` or `yarn wpbuild`.
     -->
+    <script type="text/javascript">
+        (function(d, sc, u) {
+          var s = d.createElement(sc), p = d.getElementsByTagName(sc)[0];
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = u + '?v=' + (+new Date());
+          p.parentNode.insertBefore(s,p);
+          })(document, 'script', '//aff.bstatic.com/static/affiliate_base/js/flexiproduct.js');
+    </script>
     </body>
 </html>

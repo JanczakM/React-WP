@@ -1,0 +1,16 @@
+.posts-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.section-title {
+  font-family: $font-headers;
+  color: $color-primary-dark;
+  font-size: 30px;
+}
+
+.home-ad {
+  text-align: center;
+  background-color: $color-secondary-background;
+}

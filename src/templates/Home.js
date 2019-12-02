@@ -1,8 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {wordpressLink} from '../settings/Settings'
+import PostBox from '../components/PostBox';
+import BookingMain from '../components/BookingMain';
+import MainHeader from '../components/MainHeader';
+import {wordpressLink} from '../settings/Settings';
+import AdSense from 'react-adsense';
 import Axios from 'axios';
-import ReactHtmlParser from 'react-html-parser';
 
 class Home extends React.Component {
   constructor(props) {
@@ -10,12 +13,13 @@ class Home extends React.Component {
     this.state = {
       newPosts: [],
       seasonPosts: [],
-      amazingPosts: [],
+      babyPosts: [],
     };
   }
 
   componentDidMount() {
     this.fetchnewPosts();
+    this.fetchbabyPosts();
   }
 
   fetchnewPosts(){
@@ -28,30 +32,68 @@ class Home extends React.Component {
           posts.push(post);
         }
         this.setState({newPosts: posts})
-        console.log(this.state)
       })
       .catch(err => {
         console.log(err.message);
       });
   }
 
+  fetchbabyPosts(){
+    Axios
+    .get('https://aktywnepodroze.pl/wp-json/wp/v2/posts/?categories=137')
+    .then(response => {
+      const slicedResp = response.data.slice(0,3);
+      const posts = [];
+      for(let post of slicedResp){
+        posts.push(post);
+      }
+      this.setState({babyPosts: posts})
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+  }
+
   render(){
       return (
           <div>
+            <MainHeader />
+              <section>
+                <div className='container'>
+                  <h2 className='section-title' id='posts'>Najnowsze wpisy</h2>
+                  <div className='posts-section'>
+                    {this.state.newPosts.map(post => {
+                      return <PostBox key={post.id} {...post} />
+                    })}
+                  </div>
+                </div>
+              </section>
+              <section className='home-ad'>
+                <div className='container'>
+                  <BookingMain />
+                </div>
+              </section>
+              <section>
+                <div className='container'>
+                  <h2 className='section-title'>Podróże z dzieckiem</h2>
+                  <div className='posts-section'>
+                    {this.state.babyPosts.map(post => {
+                      return <PostBox key={post.id} {...post} />
+                    })}
+                  </div>
+                </div>
+              </section>
+              <section className='home-ad'>
+                <div className='container'>
+                  <AdSense.Google
+                    client='ca-pub-5307925712437665'
+                    slot='5106772838'
+                    style={{ display: 'block' }}
+                    data-full-width-responsive='true'
+                  />
+                </div>
+              </section>
               <Link to={wordpressLink + 'pages/wspolpraca'}>Współpraca</Link>
-              <h2>Najnowsze wpisy</h2>
-              <div>
-                {this.state.newPosts.map(post => {
-                  return (
-                    <Link to={post.link} key={post.id}>
-                      <div>
-                        <img src={post.featured_img.url} alt={post.featured_img.alt}></img>
-                        {ReactHtmlParser(post.title.rendered)}
-                        <div>{ReactHtmlParser(post.excerpt.rendered)}</div>
-                      </div>
-                    </Link>)
-                })}
-              </div>
           </div>
       )
   }
