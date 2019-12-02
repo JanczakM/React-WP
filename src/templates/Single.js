@@ -3,8 +3,8 @@ import Axios from 'axios';
 import ReactHtmlParser from 'react-html-parser';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import SimilarPosts from '../components/SimilarPosts';
-import BookingSingle from '../components/BookingSingle'
+import BookingSingle from '../components/BookingSingle';
+import {Link} from 'react-router-dom';
 
 class Single extends React.Component {
     constructor(props) {
@@ -15,6 +15,7 @@ class Single extends React.Component {
       content: '',
       imageAlt: '',
       categories: [],
+      similarPosts: [],
     };
   }
 
@@ -33,6 +34,18 @@ class Single extends React.Component {
             imageAlt: response.data[0].featured_img.alt,
             categories: response.data[0].categories,
           })
+
+          const joined = this.state.categories.join(', ');
+          Axios
+            .get('https://aktywnepodroze.pl/wp-json/wp/v2/posts/?categories=' + joined)
+            .then(response => {
+              this.setState({
+                similarPosts: response.data,
+              })
+            })
+            .catch(err => {
+              console.log(err.message);
+            });
         })
         .catch(err => {
           console.log(err.message);
@@ -51,10 +64,17 @@ class Single extends React.Component {
           <div className='single-content'>{this.state.content}</div>
         </main>
         <aside className='container-single'>
-          <h2 className='headers'>Możesz od razu sprawdzić dostępność noclegów:</h2>
+          <h2 className='headers'>Tutaj możesz sprawdzić dostępność noclegów:</h2>
           <BookingSingle />
           <h2 className='headers'>Podobne wpisy:</h2>
-          <SimilarPosts categories={this.state.categories} />
+          {this.state.similarPosts.map(simPost => (
+            <Link to={simPost.slug} key={simPost.id}>
+              <div className='single-similarposts'>
+                <img src={simPost.featured_img.url} alt={simPost.featured_img.alt}></img>
+                <h3>{ReactHtmlParser(simPost.title.rendered)}</h3>
+              </div>
+            </Link>
+          ))}
         </aside>
         <Footer />
       </div>

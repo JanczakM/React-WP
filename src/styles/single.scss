@@ -1,6 +1,10 @@
 .single {
   &-top {
     position: relative;
+
+    img {
+      width: 768px;
+    }
   }
   &-fimg {
     border-radius: $radius;
@@ -11,6 +15,22 @@
     top: 50%;
     padding: 40px 20px 40px 5px;
     background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  &-similarposts {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+
+    img {
+      width: 70px;
+      height: 60px;
+      object-fit: cover;
+    }
+
+    h3 {
+      margin: 0 0 0 10px;
+    }
   }
 
   &-content {

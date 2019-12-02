@@ -1,0 +1,18 @@
+.cooperation {
+  &-box {
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 50px;
+      color: $color-secondary;
+    }
+  }
+
+  &-icon {
+    text-align: center;
+    margin-right: 20px;
+  }
+
+
+}
