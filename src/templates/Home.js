@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import PostBox from '../components/PostBox';
 import BookingMain from '../components/BookingMain';
 import MainHeader from '../components/MainHeader';
@@ -16,12 +15,12 @@ class Home extends React.Component {
       babyPosts: [],
       seasonMsg: '',
     };
-    this.fetchseasonData(new Date().getMonth() + 1);
   }
 
-  componentDidMount() {
+  componentDidMount(){
     this.fetchnewPosts();
     this.fetchbabyPosts();
+    this.fetchseasonData(new Date().getMonth() + 1);
   }
 
   fetchnewPosts(){
@@ -94,7 +93,6 @@ class Home extends React.Component {
 
 
   render(){
-    console.log(this.state);
       return (
           <div>
             <MainHeader />

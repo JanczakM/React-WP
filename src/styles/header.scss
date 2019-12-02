@@ -1,4 +1,4 @@
-.header {
+.homepage-header {
   background-image: url(https://aktywnepodroze.pl/wp-content/uploads/2018/09/cropped-IMAG4159_1.jpg);
   background-repeat: no-repeat;
   background-position: center;
@@ -17,4 +17,33 @@
     text-shadow: 1px 1px 1px #000000;
     font-size: 100px;
   }
+}
+
+header {
+  background-color: $color-primary-dark;
+  padding: 5px 0;
+  div {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+}
+
+.header-contact {
+  a {
+    margin-left: 15px;
+    font-size: 20px;
+  }
+}
+
+.logo {
+  font-family: $font-headers;
+  font-size: 30px;
 }
