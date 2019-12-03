@@ -4,8 +4,7 @@ import ReactHtmlParser from 'react-html-parser';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ReactGA from 'react-ga';
-ReactGA.initialize('UA-61591156-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
+import {wordpressLink} from '../settings/Settings';
 
 class Cookies extends React.Component {
     constructor(props) {
@@ -18,6 +17,8 @@ class Cookies extends React.Component {
 
   componentDidMount() {
     this.fetchPageData(this.props);
+    ReactGA.initialize('UA-61591156-1');
+    ReactGA.pageview(wordpressLink + 'polityka-plikow-cookies');
   }
 
   fetchPageData(props){

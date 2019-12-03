@@ -17,22 +17,6 @@
     background-color: rgba(255, 255, 255, 0.6);
   }
 
-  &-similarposts {
-    display: flex;
-    margin-bottom: 10px;
-    align-items: center;
-
-    img {
-      width: 70px;
-      height: 60px;
-      object-fit: cover;
-    }
-
-    h3 {
-      margin: 0 0 0 10px;
-    }
-  }
-
   &-content {
     & figure {
       margin-left: 0;
@@ -53,6 +37,26 @@
 
     & p {
       font-size: 20px;
+    }
+  }
+
+  &-similarposts {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+
+    &-link {
+      text-decoration: none !important;
+    }
+
+    img {
+      width: 70px;
+      height: 60px;
+      object-fit: cover;
+    }
+
+    h3 {
+      margin: 0 0 0 10px;
     }
   }
 }

@@ -7,7 +7,7 @@ const SimilarPosts = (props) => {
   return (
     <div>
     {postsArr.map(simPost => (
-      <Link to={simPost.slug} key={simPost.id}>
+      <Link to={simPost.slug} key={simPost.id} className='single-similarposts-link'>
         <div className='single-similarposts'>
           <img src={simPost.featured_img.url} alt={simPost.featured_img.alt}></img>
           <h3>{ReactHtmlParser(simPost.title.rendered)}</h3>

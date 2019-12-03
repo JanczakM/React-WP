@@ -6,8 +6,7 @@ import Footer from '../components/Footer';
 import BookingSingle from '../components/BookingSingle';
 import SimilarPosts from '../components/SimilarPosts';
 import ReactGA from 'react-ga';
-ReactGA.initialize('UA-61591156-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
+import {wordpressLink} from '../settings/Settings';
 
 class Single extends React.Component {
     constructor(props) {
@@ -24,12 +23,16 @@ class Single extends React.Component {
 
   componentDidMount() {
     this.fetchPostData(this.props);
+    ReactGA.initialize('UA-61591156-1');
+    ReactGA.pageview(wordpressLink + this.props.match.params.slug);
   }
 
   componentDidUpdate(prevProps) {
    if (this.props.match.params.slug !== prevProps.match.params.slug) {
      this.fetchPostData(this.props);
      window.scrollTo({ top: 0, behavior: 'smooth' });
+     ReactGA.initialize('UA-61591156-1');
+     ReactGA.pageview(wordpressLink + this.props.match.params.slug);
    }
   }
 

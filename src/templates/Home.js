@@ -6,8 +6,7 @@ import Footer from '../components/Footer';
 import AdSense from 'react-adsense';
 import Axios from 'axios';
 import ReactGA from 'react-ga';
-ReactGA.initialize('UA-61591156-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
+import {wordpressLink} from '../settings/Settings';
 
 class Home extends React.Component {
   constructor(props) {
@@ -24,6 +23,8 @@ class Home extends React.Component {
     this.fetchnewPosts();
     this.fetchbabyPosts();
     this.fetchseasonData(new Date().getMonth() + 1);
+    ReactGA.initialize('UA-61591156-1');
+    ReactGA.pageview(wordpressLink);
   }
 
   fetchnewPosts(){
