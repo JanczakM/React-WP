@@ -6,7 +6,7 @@ import {wordpressLink} from '../settings/Settings';
 
 const Cooperate = (props) => {
   ReactGA.initialize('UA-61591156-1');
-  ReactGA.pageview(wordpressLink + 'wspolpraca');
+  ReactGA.pageview(wordpressLink + '/wspolpraca');
     return (
         <div>
           <Header />

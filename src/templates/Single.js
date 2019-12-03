@@ -24,7 +24,7 @@ class Single extends React.Component {
   componentDidMount() {
     this.fetchPostData(this.props);
     ReactGA.initialize('UA-61591156-1');
-    ReactGA.pageview(wordpressLink + this.props.match.params.slug);
+    ReactGA.pageview(wordpressLink + '/' + this.props.match.params.slug);
   }
 
   componentDidUpdate(prevProps) {
@@ -32,7 +32,7 @@ class Single extends React.Component {
      this.fetchPostData(this.props);
      window.scrollTo({ top: 0, behavior: 'smooth' });
      ReactGA.initialize('UA-61591156-1');
-     ReactGA.pageview(wordpressLink + this.props.match.params.slug);
+     ReactGA.pageview(wordpressLink + '/' + this.props.match.params.slug);
    }
   }
 

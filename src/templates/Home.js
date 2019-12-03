@@ -24,7 +24,7 @@ class Home extends React.Component {
     this.fetchbabyPosts();
     this.fetchseasonData(new Date().getMonth() + 1);
     ReactGA.initialize('UA-61591156-1');
-    ReactGA.pageview(wordpressLink);
+    ReactGA.pageview(wordpressLink + '/');
   }
 
   fetchnewPosts(){
