@@ -1,4 +1,5 @@
 @import './settings.scss';
+@import './main.scss';
 @import './postbox.scss';
 @import './home.scss';
 @import './header.scss';
@@ -6,49 +7,4 @@
 @import './footer.scss';
 @import './single.scss';
 @import './cooperation.scss';
-
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: $font-main;
-  color: $color-text;
-  margin: 0;
-  padding: 0;
-  background: $color-primary-background;
-}
-
-h1, h2, h3, h4, h5,h6 {
-  color: black;
-}
-
-section {
-  padding: 30px 0;
-}
-
-a {
-  color: $color-text;
-  text-decoration: none;
-}
-
-.underlined {
-  text-decoration: underline;
-}
-
-.headers {
-  font-family: $font-headers;
-}
-
-.container {
-  margin: 0 auto;
-  max-width: 1100px;
-  &-single {
-    max-width: 760px;
-    margin: 20px auto 0;
-  }
-}
+@import './responsive.scss';

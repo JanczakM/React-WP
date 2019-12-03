@@ -48,6 +48,7 @@ class Single extends React.Component {
             });
         })
         .catch(err => {
+          this.setState({title: 'Nie ma takiej strony :-('})
           console.log(err.message);
         });
   }
@@ -58,7 +59,7 @@ class Single extends React.Component {
         <Header />
         <main className='container-single'>
           <div className='single-top'>
-            <img src={this.state.image} alt={this.state.imageAlt} className='single-fimg'></img>
+            {this.state.image ? <img src={this.state.image} alt={this.state.imageAlt} className='single-fimg'></img> : <img src='https://aktywnepodroze.pl/wp-content/uploads/2018/09/cropped-IMAG4159_1.jpg' alt='widok na morze' className='single-fimg'></img>}
             <h1 className='single-title'>{this.state.title}</h1>
           </div>
           <div className='single-content'>{this.state.content}</div>
@@ -66,7 +67,7 @@ class Single extends React.Component {
         <aside className='container-single'>
           <h2 className='headers'>Tutaj możesz sprawdzić dostępność noclegów:</h2>
           <BookingSingle />
-          <h2 className='headers'>Podobne wpisy:</h2>
+          {this.state.similarPosts.length > 0 ? <h2 className='headers'>Podobne wpisy:</h2> : ''}
           {this.state.similarPosts.map(simPost => (
             <Link to={simPost.slug} key={simPost.id}>
               <div className='single-similarposts'>
