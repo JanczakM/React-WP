@@ -1,7 +1,7 @@
 .postbox {
   &-box {
     border-radius: $radius;
-    width: 350px;
+    max-width: 350px;
     margin-bottom: 20px;
     border-bottom: 1px solid $color-secondary-background;
     border-right: 1px solid $color-secondary-background;

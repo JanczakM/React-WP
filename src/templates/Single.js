@@ -64,7 +64,7 @@ class Single extends React.Component {
           </div>
           <div className='single-content'>{this.state.content}</div>
         </main>
-        <aside className='container-single'>
+        <aside className='container-single single-content'>
           <h2 className='headers'>Tutaj możesz sprawdzić dostępność noclegów:</h2>
           <BookingSingle />
           {this.state.similarPosts.length > 0 ? <h2 className='headers'>Podobne wpisy:</h2> : ''}

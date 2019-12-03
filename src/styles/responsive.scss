@@ -3,7 +3,72 @@
     font-size: 60px;
   }
 
+  header {
+    padding: 5px 10px;
+  }
+
+  .header-contact a {
+    font-size: 15px;
+  }
+
+  .logo {
+    font-size: 15px;
+  }
+
+  .container-single {
+    margin-top: 0;
+  }
+
+  .section-title {
+    margin-left: 10px;
+  }
+
+  .posts-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .single-top img {
+    width: 100%;
+  }
+
+  .single-title {
+    top: 10%;
+    font-size: 25px;
+  }
+
+  .single-content {
+    margin: 0 10px;
+    figure img {
+      width: 95vw;
+      height: auto;
+    }
+  }
+
+  ins {
+    display: none;
+  }
+
+  .single-similarposts h3 {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+
+  .homepage-header {
+    height: 50vh;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
   section {
-    padding: 30px 10px;
+    padding: 30px 20px;
+  }
+
+  .posts-section {
+    justify-content: space-around;
   }
 }
