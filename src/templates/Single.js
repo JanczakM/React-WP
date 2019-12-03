@@ -4,7 +4,10 @@ import ReactHtmlParser from 'react-html-parser';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BookingSingle from '../components/BookingSingle';
-import {Link} from 'react-router-dom';
+import SimilarPosts from '../components/SimilarPosts';
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-61591156-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class Single extends React.Component {
     constructor(props) {
@@ -21,6 +24,13 @@ class Single extends React.Component {
 
   componentDidMount() {
     this.fetchPostData(this.props);
+  }
+
+  componentDidUpdate(prevProps) {
+   if (this.props.match.params.slug !== prevProps.match.params.slug) {
+     this.fetchPostData(this.props);
+     window.scrollTo({ top: 0, behavior: 'smooth' });
+   }
   }
 
   fetchPostData(props){
@@ -67,15 +77,7 @@ class Single extends React.Component {
         <aside className='container-single single-content'>
           <h2 className='headers'>Tutaj możesz sprawdzić dostępność noclegów:</h2>
           <BookingSingle />
-          {this.state.similarPosts.length > 0 ? <h2 className='headers'>Podobne wpisy:</h2> : ''}
-          {this.state.similarPosts.map(simPost => (
-            <Link to={simPost.slug} key={simPost.id}>
-              <div className='single-similarposts'>
-                <img src={simPost.featured_img.url} alt={simPost.featured_img.alt}></img>
-                <h3>{ReactHtmlParser(simPost.title.rendered)}</h3>
-              </div>
-            </Link>
-          ))}
+          {this.state.similarPosts.length > 0 ? <SimilarPosts {...this.state.similarPosts} /> : ''}
         </aside>
         <Footer />
       </div>

@@ -5,6 +5,9 @@ import MainHeader from '../components/MainHeader';
 import Footer from '../components/Footer';
 import AdSense from 'react-adsense';
 import Axios from 'axios';
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-61591156-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class Home extends React.Component {
   constructor(props) {
