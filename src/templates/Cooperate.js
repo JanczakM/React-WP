@@ -4,9 +4,9 @@ import Footer from '../components/Footer';
 import ReactGA from 'react-ga';
 import {wordpressLink} from '../settings/Settings';
 
-const Cooperate = (props) => {
+const Cooperate = () => {
   ReactGA.initialize('UA-61591156-1');
-  ReactGA.pageview(wordpressLink + '/wspolpraca');
+  ReactGA.pageview(wordpressLink + 'wspolpraca');
     return (
         <div>
           <Header />

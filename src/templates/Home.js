@@ -1,12 +1,12 @@
 import React from 'react';
 import PostBox from '../components/PostBox';
-import BookingMain from '../components/BookingMain';
+import Booking from '../components/Booking';
 import MainHeader from '../components/MainHeader';
 import Footer from '../components/Footer';
 import AdSense from 'react-adsense';
 import Axios from 'axios';
 import ReactGA from 'react-ga';
-import {wordpressLink} from '../settings/Settings';
+import {wordpressLink, bookingEngine} from '../settings/Settings';
 
 class Home extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class Home extends React.Component {
     this.fetchbabyPosts();
     this.fetchseasonData(new Date().getMonth() + 1);
     ReactGA.initialize('UA-61591156-1');
-    ReactGA.pageview(wordpressLink + '/');
+    ReactGA.pageview(wordpressLink);
   }
 
   fetchnewPosts(){
@@ -105,14 +105,14 @@ class Home extends React.Component {
                   <h2 className='section-title' id='posts'>Najnowsze wpisy</h2>
                   <div className='posts-section'>
                     {this.state.newPosts.map(post => {
-                      return <PostBox key={post.id} {...post} />
+                      return <PostBox key={post.id} image={post.featured_img} title={post.title} link={post.slug} />
                     })}
                   </div>
                 </div>
               </section>
               <section className='home-ad'>
                 <div className='container'>
-                  <BookingMain />
+                  <Booking type='home' />
                 </div>
               </section>
               <section>
@@ -120,7 +120,7 @@ class Home extends React.Component {
                   <h2 className='section-title'>Podróże z dzieckiem</h2>
                   <div className='posts-section'>
                     {this.state.babyPosts.map(post => {
-                      return <PostBox key={post.id} {...post} />
+                      return <PostBox key={post.id} image={post.featured_img} title={post.title} link={post.slug} />
                     })}
                   </div>
                 </div>
@@ -140,7 +140,7 @@ class Home extends React.Component {
                   <h2 className='section-title'>{this.state.seasonMsg}</h2>
                   <div className='posts-section'>
                     {this.state.seasonPosts.map(post => {
-                      return <PostBox key={post.id} {...post} />
+                      return <PostBox key={post.id} image={post.featured_img} title={post.title} link={post.slug} />
                     })}
                   </div>
                 </div>

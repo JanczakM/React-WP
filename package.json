@@ -6,6 +6,7 @@
         "@devloco/react-scripts-wptheme": "^3.2.0-wp.2",
         "axios": "^0.19.0",
         "node-sass": "^4.13.0",
+        "prop-types": "^15.7.2",
         "react": "^16.12.0",
         "react-adsense": "^0.1.0",
         "react-cookie-consent": "^2.5.0",

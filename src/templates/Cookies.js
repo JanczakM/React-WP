@@ -18,7 +18,7 @@ class Cookies extends React.Component {
   componentDidMount() {
     this.fetchPageData(this.props);
     ReactGA.initialize('UA-61591156-1');
-    ReactGA.pageview(wordpressLink + '/polityka-plikow-cookies');
+    ReactGA.pageview(wordpressLink + 'polityka-plikow-cookies');
   }
 
   fetchPageData(props){

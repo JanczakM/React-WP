@@ -50,14 +50,5 @@
         To begin the development, run `npm run wpstart` or `yarn wpstart`.
         To create a production bundle, use `npm run wpbuild` or `yarn wpbuild`.
     -->
-    <script type="text/javascript">
-        (function(d, sc, u) {
-          var s = d.createElement(sc), p = d.getElementsByTagName(sc)[0];
-          s.type = 'text/javascript';
-          s.async = true;
-          s.src = u + '?v=' + (+new Date());
-          p.parentNode.insertBefore(s,p);
-          })(document, 'script', '//aff.bstatic.com/static/affiliate_base/js/flexiproduct.js');
-    </script>
     </body>
 </html>

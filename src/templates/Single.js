@@ -3,10 +3,10 @@ import Axios from 'axios';
 import ReactHtmlParser from 'react-html-parser';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import BookingSingle from '../components/BookingSingle';
+import Booking from '../components/Booking';
 import SimilarPosts from '../components/SimilarPosts';
 import ReactGA from 'react-ga';
-import {wordpressLink} from '../settings/Settings';
+import {wordpressLink, mainphoto, bookingEngine} from '../settings/Settings';
 
 class Single extends React.Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class Single extends React.Component {
   componentDidMount() {
     this.fetchPostData(this.props);
     ReactGA.initialize('UA-61591156-1');
-    ReactGA.pageview(wordpressLink + '/' + this.props.match.params.slug);
+    ReactGA.pageview(wordpressLink + this.props.match.params.slug);
   }
 
   componentDidUpdate(prevProps) {
@@ -32,7 +32,7 @@ class Single extends React.Component {
      this.fetchPostData(this.props);
      window.scrollTo({ top: 0, behavior: 'smooth' });
      ReactGA.initialize('UA-61591156-1');
-     ReactGA.pageview(wordpressLink + '/' + this.props.match.params.slug);
+     ReactGA.pageview(wordpressLink + this.props.match.params.slug);
    }
   }
 
@@ -61,7 +61,11 @@ class Single extends React.Component {
             });
         })
         .catch(err => {
-          this.setState({title: 'Nie ma takiej strony :-('})
+          this.setState({
+            title: 'Nie ma takiej strony :-(',
+            image: 'https://aktywnepodroze.pl/wp-content/uploads/2018/09/cropped-IMAG4159_1.jpg',
+            imageAlt: 'widok na morze'
+          })
           console.log(err.message);
         });
   }
@@ -72,14 +76,15 @@ class Single extends React.Component {
         <Header />
         <main className='container-single'>
           <div className='single-top'>
-            {this.state.image ? <img src={this.state.image} alt={this.state.imageAlt} className='single-fimg'></img> : <img src='https://aktywnepodroze.pl/wp-content/uploads/2018/09/cropped-IMAG4159_1.jpg' alt='widok na morze' className='single-fimg'></img>}
+            <img src={this.state.image} alt={this.state.imageAlt} className='single-fimg'></img>
             <h1 className='single-title'>{this.state.title}</h1>
           </div>
           <div className='single-content'>{this.state.content}</div>
         </main>
         <aside className='container-single single-content'>
-          <h2 className='headers'>Tutaj możesz sprawdzić dostępność noclegów:</h2>
-          <BookingSingle />
+          {this.state.title ? <h2 className='headers'>Tutaj możesz sprawdzić dostępność noclegów:</h2> : ''}
+          {this.state.title ? <Booking type='single' /> : ''}
+          {this.state.similarPosts.length > 0 ? <h2 className='headers'>Podobne wpisy:</h2> : ''}
           {this.state.similarPosts.length > 0 ? <SimilarPosts {...this.state.similarPosts} /> : ''}
         </aside>
         <Footer />
