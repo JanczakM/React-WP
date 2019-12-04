@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import AdSense from 'react-adsense';
 import Axios from 'axios';
 import ReactGA from 'react-ga';
-import {wordpressLink, bookingEngine} from '../settings/Settings';
+import {wordpressLink} from '../settings/Settings';
 
 class Home extends React.Component {
   constructor(props) {

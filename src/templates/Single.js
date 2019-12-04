@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import Booking from '../components/Booking';
 import SimilarPosts from '../components/SimilarPosts';
 import ReactGA from 'react-ga';
-import {wordpressLink, mainphoto, bookingEngine} from '../settings/Settings';
+import {wordpressLink, mainphoto} from '../settings/Settings';
 
 class Single extends React.Component {
     constructor(props) {
@@ -63,7 +63,7 @@ class Single extends React.Component {
         .catch(err => {
           this.setState({
             title: 'Nie ma takiej strony :-(',
-            image: 'https://aktywnepodroze.pl/wp-content/uploads/2018/09/cropped-IMAG4159_1.jpg',
+            image: mainphoto,
             imageAlt: 'widok na morze'
           })
           console.log(err.message);
