@@ -1,6 +1,29 @@
+@media only screen and (max-width: 1400px) {
+
+  .homepage-header {
+    height: 50vh;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  section {
+    padding: 30px 20px;
+  }
+
+  .posts-section {
+    justify-content: space-around;
+  }
+}
+
 @media only screen and (max-width: 640px) {
   .homepage-header-title {
     font-size: 60px;
+  }
+
+  .homepage-header {
+    height: 70vh;
   }
 
   header {
@@ -52,23 +75,8 @@
   .single-similarposts h3 {
     font-size: 12px;
   }
-}
 
-@media only screen and (max-width: 1400px) {
-
-  .homepage-header {
-    height: 50vh;
-  }
-
-  .container {
-    padding: 0 10px;
-  }
-
-  section {
-    padding: 30px 20px;
-  }
-
-  .posts-section {
-    justify-content: space-around;
+  .postbox-box {
+    width: 100%;
   }
 }
