@@ -1,5 +1,5 @@
 import React from 'react';
-import {wordpressLink} from '../settings/Settings';
+import {settings} from '../settings/Settings';
 import {Link} from 'react-router-dom';
 
 const Footer = () => {
@@ -10,11 +10,11 @@ const Footer = () => {
               Projekt bloga: <a href='mailto: m.janczak@int.pl'>Małgorzata Jańczak</a>
             </div>
             <div className='footer-box'>
-              <a href='https://facebook.com/aktywnepodroze'><i className="fab fa-facebook-square"></i></a>
-              <a href='https://www.instagram.com/aktywnepodroze.pl/'><i className="fab fa-instagram"></i></a>
+              <a href={settings.facebookLink}><i className="fab fa-facebook-square"></i></a>
+              <a href={settings.instagramLink}><i className="fab fa-instagram"></i></a>
             </div>
             <div className='footer-box'>
-              <Link to={wordpressLink + 'pages/wspolpraca'}>Współpraca</Link>
+              <Link to={settings.wordpressLink + 'pages/' + settings.cooperationSite}>Współpraca</Link>
             </div>
           </div>
         </footer>

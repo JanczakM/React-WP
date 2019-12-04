@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/global.scss';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import {wordpressLink} from './settings/Settings';
+import {settings} from './settings/Settings';
 
 import Single from './templates/Single';
 import Home from './templates/Home';
@@ -16,10 +16,10 @@ function App() {
     <BrowserRouter>
       <CookieBar>
         <Switch>
-         <Route exact path={wordpressLink} component={Home} />
-         <Route exact path={wordpressLink + 'pages/wspolpraca'} component={Cooperate} />
-         <Route exact path={wordpressLink + 'pages/polityka-plikow-cookies'} component={Cookies} />
-         <Route path={wordpressLink + ':slug'} component={Single} />
+         <Route exact path={settings.wordpressLink} component={Home} />
+         <Route exact path={settings.wordpressLink + 'pages/' + settings.cooperationSite} component={Cooperate} />
+         <Route exact path={settings.wordpressLink + 'pages/' + settings.cookiePolicySite} component={Cookies} />
+         <Route path={settings.wordpressLink + ':slug'} component={Single} />
          <Route component={Notfound} />
         </Switch>
       </CookieBar>

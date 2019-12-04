@@ -2,11 +2,11 @@ import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ReactGA from 'react-ga';
-import {wordpressLink} from '../settings/Settings';
+import {settings} from '../settings/Settings';
 
 const Cooperate = () => {
-  ReactGA.initialize('UA-61591156-1');
-  ReactGA.pageview(wordpressLink + 'wspolpraca');
+  ReactGA.initialize(settings.analytics);
+  ReactGA.pageview(settings.wordpressLink + settings.cooperationSite);
     return (
         <div>
           <Header />
@@ -38,7 +38,7 @@ const Cooperate = () => {
               <div className='cooperation-box'>
                 <div className='cooperation-icon'><i className='fas fa-at fa-fw'></i></div>
                 <div>
-                  <p>W sprawie współpracy proszę o kontakt na poniższy adres mailowy: kontakt@aktywnepodroze.pl</p>
+                  <p>W sprawie współpracy proszę o kontakt na poniższy adres mailowy: {settings.email}</p>
                 </div>
               </div>
             </main>

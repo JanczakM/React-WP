@@ -4,7 +4,7 @@ import ReactHtmlParser from 'react-html-parser';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ReactGA from 'react-ga';
-import {wordpressLink} from '../settings/Settings';
+import {settings} from '../settings/Settings';
 
 class Cookies extends React.Component {
     constructor(props) {
@@ -17,13 +17,13 @@ class Cookies extends React.Component {
 
   componentDidMount() {
     this.fetchPageData(this.props);
-    ReactGA.initialize('UA-61591156-1');
-    ReactGA.pageview(wordpressLink + 'polityka-plikow-cookies');
+    ReactGA.initialize(settings.analytics);
+    ReactGA.pageview(settings.wordpressLink + settings.cookiePolicySite);
   }
 
   fetchPageData(props){
       Axios
-        .get('https://aktywnepodroze.pl/wp-json/wp/v2/pages?slug=polityka-plikow-cookies')
+        .get(settings.domain + '/wp-json/wp/v2/pages?slug=' + settings.cookiePolicySite)
         .then(response => {
           this.setState({
             title: ReactHtmlParser(response.data[0].title.rendered),

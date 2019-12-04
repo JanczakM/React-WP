@@ -3,10 +3,9 @@ import Axios from 'axios';
 import ReactHtmlParser from 'react-html-parser';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Booking from '../components/Booking';
 import SimilarPosts from '../components/SimilarPosts';
 import ReactGA from 'react-ga';
-import {wordpressLink, mainphoto} from '../settings/Settings';
+import {settings} from '../settings/Settings';
 
 class Single extends React.Component {
     constructor(props) {
@@ -23,22 +22,22 @@ class Single extends React.Component {
 
   componentDidMount() {
     this.fetchPostData(this.props);
-    ReactGA.initialize('UA-61591156-1');
-    ReactGA.pageview(wordpressLink + this.props.match.params.slug);
+    ReactGA.initialize(settings.analytics);
+    ReactGA.pageview(settings.wordpressLink + this.props.match.params.slug);
   }
 
   componentDidUpdate(prevProps) {
    if (this.props.match.params.slug !== prevProps.match.params.slug) {
      this.fetchPostData(this.props);
      window.scrollTo({ top: 0, behavior: 'smooth' });
-     ReactGA.initialize('UA-61591156-1');
-     ReactGA.pageview(wordpressLink + this.props.match.params.slug);
+     ReactGA.initialize(settings.analytics);
+     ReactGA.pageview(settings.wordpressLink + this.props.match.params.slug);
    }
   }
 
   fetchPostData(props){
       Axios
-        .get('https://aktywnepodroze.pl/wp-json/wp/v2/posts/?slug=' + props.match.params.slug)
+        .get(settings.domain + '/wp-json/wp/v2/posts/?slug=' + props.match.params.slug)
         .then(response => {
           this.setState({
             title: ReactHtmlParser(response.data[0].title.rendered),
@@ -50,7 +49,7 @@ class Single extends React.Component {
 
           const joined = this.state.categories.join(', ');
           Axios
-            .get('https://aktywnepodroze.pl/wp-json/wp/v2/posts/?categories=' + joined)
+            .get(settings.domain + '/wp-json/wp/v2/posts/?categories=' + joined)
             .then(response => {
               this.setState({
                 similarPosts: response.data,
@@ -63,8 +62,8 @@ class Single extends React.Component {
         .catch(err => {
           this.setState({
             title: 'Nie ma takiej strony :-(',
-            image: mainphoto,
-            imageAlt: 'widok na morze'
+            image: settings.mainphoto,
+            imageAlt: settings.mainphotoAlt,
           })
           console.log(err.message);
         });
@@ -81,9 +80,7 @@ class Single extends React.Component {
           </div>
           <div className='single-content'>{this.state.content}</div>
         </main>
-        <aside className='container-single single-content'>
-          {this.state.title ? <h2 className='headers'>Tutaj możesz sprawdzić dostępność noclegów:</h2> : ''}
-          {this.state.title ? <Booking type='single' /> : ''}
+        <aside className='container-single single-content p-bottom'>
           {this.state.similarPosts.length > 0 ? <h2 className='headers'>Podobne wpisy:</h2> : ''}
           {this.state.similarPosts.length > 0 ? <SimilarPosts {...this.state.similarPosts} /> : ''}
         </aside>

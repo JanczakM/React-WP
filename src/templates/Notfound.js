@@ -2,11 +2,11 @@ import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ReactGA from 'react-ga';
-import {wordpressLink} from '../settings/Settings';
+import {settings} from '../settings/Settings';
 
 const Notfound = () => {
-  ReactGA.initialize('UA-61591156-1');
-  ReactGA.pageview(wordpressLink + '404');
+  ReactGA.initialize(settings.analytics);
+  ReactGA.pageview(settings.wordpressLink + '404');
     return (
         <div>
           <Header />

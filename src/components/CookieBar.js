@@ -1,6 +1,7 @@
 import CookieConsent from 'react-cookie-consent';
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {settings} from '../settings/Settings';
 
 const CookieBar = ({children}) => {
   return (
@@ -16,7 +17,7 @@ const CookieBar = ({children}) => {
         contentStyle={{ margin: '10px', flex: 'none' }}
     >
         Ta strona korzysta z plików cookies. {' '}
-        <Link to='pages/polityka-plikow-cookies'>Polityka plików cookies</Link>
+        <Link to={'pages/' + settings.cookiePolicySite}>Polityka plików cookies</Link>
       </CookieConsent>
     </div>
   )

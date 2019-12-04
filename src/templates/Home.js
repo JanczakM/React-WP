@@ -1,12 +1,11 @@
 import React from 'react';
 import PostBox from '../components/PostBox';
-import Booking from '../components/Booking';
 import MainHeader from '../components/MainHeader';
 import Footer from '../components/Footer';
 import AdSense from 'react-adsense';
 import Axios from 'axios';
 import ReactGA from 'react-ga';
-import {wordpressLink} from '../settings/Settings';
+import {settings} from '../settings/Settings';
 
 class Home extends React.Component {
   constructor(props) {
@@ -23,13 +22,13 @@ class Home extends React.Component {
     this.fetchnewPosts();
     this.fetchbabyPosts();
     this.fetchseasonData(new Date().getMonth() + 1);
-    ReactGA.initialize('UA-61591156-1');
-    ReactGA.pageview(wordpressLink);
+    ReactGA.initialize(settings.analytics);
+    ReactGA.pageview(settings.wordpressLink);
   }
 
   fetchnewPosts(){
     Axios
-      .get('https://aktywnepodroze.pl/wp-json/wp/v2/posts/')
+      .get(settings.domain + '/wp-json/wp/v2/posts/')
       .then(response => {
         const slicedResp = response.data.slice(0,6);
         const posts = [];
@@ -45,7 +44,7 @@ class Home extends React.Component {
 
   fetchbabyPosts(){
     Axios
-    .get('https://aktywnepodroze.pl/wp-json/wp/v2/posts/?categories=137')
+    .get(settings.domain + '/wp-json/wp/v2/posts/?categories=' + settings.babyPostCategory)
     .then(response => {
       const slicedResp = response.data.slice(0,3);
       const posts = [];
@@ -64,23 +63,23 @@ class Home extends React.Component {
 
     if (month === 12 || month === 1 || month === 2) {
       seasonMsg = 'Inspiracje na zimowe ferie';
-      seasonTag = 18;
+      seasonTag = settings.winterPostCategory;
     }
     else if ((month > 9) && (month < 12)) {
       seasonMsg = 'Dokąd uciec od jesiennej szarugi?';
-      seasonTag = 139;
+      seasonTag = settings.autumnPostCategory;
     }
     else if ((month > 5) && (month <= 9)){
       seasonMsg = 'Pomysły na wakacyjne wyjazdy';
-      seasonTag = 141;
+      seasonTag = settings.summerPostCategory;
     }
     else {
       seasonMsg = 'Podróżniczy lifestyle';
-      seasonTag = 140;
+      seasonTag = settings.lifestylePostCategory;
     }
 
     Axios
-    .get('https://aktywnepodroze.pl/wp-json/wp/v2/posts/?tags=' + seasonTag)
+    .get(settings.domain + '/wp-json/wp/v2/posts/?tags=' + seasonTag)
     .then(response => {
       const slicedResp = response.data.slice(0,3);
       const posts = [];
@@ -112,7 +111,6 @@ class Home extends React.Component {
               </section>
               <section className='home-ad'>
                 <div className='container'>
-                  <Booking type='home' />
                 </div>
               </section>
               <section>
@@ -128,8 +126,8 @@ class Home extends React.Component {
               <section className='home-ad'>
                 <div className='container'>
                   <AdSense.Google
-                    client='ca-pub-5307925712437665'
-                    slot='5106772838'
+                    client= {settings.adSenseClient}
+                    slot= {settings.adSenseSlot}
                     style={{ display: 'block' }}
                     data-full-width-responsive='true'
                   />
