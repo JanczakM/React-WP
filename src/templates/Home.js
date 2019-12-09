@@ -19,46 +19,12 @@ class Home extends React.Component {
   }
 
   componentDidMount(){
-    this.fetchnewPosts();
-    this.fetchbabyPosts();
-    this.fetchseasonData(new Date().getMonth() + 1);
+    this.fetchPosts(new Date().getMonth() + 1);
     ReactGA.initialize(settings.analytics);
     ReactGA.pageview(settings.wordpressLink);
   }
 
-  fetchnewPosts(){
-    Axios
-      .get(settings.domain + '/wp-json/wp/v2/posts/')
-      .then(response => {
-        const slicedResp = response.data.slice(0,6);
-        const posts = [];
-        for(let post of slicedResp){
-          posts.push(post);
-        }
-        this.setState({newPosts: posts})
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
-  }
-
-  fetchbabyPosts(){
-    Axios
-    .get(settings.domain + '/wp-json/wp/v2/posts/?categories=' + settings.babyPostCategory)
-    .then(response => {
-      const slicedResp = response.data.slice(0,3);
-      const posts = [];
-      for(let post of slicedResp){
-        posts.push(post);
-      }
-      this.setState({babyPosts: posts})
-    })
-    .catch(err => {
-      console.log(err.message);
-    });
-  }
-
-  fetchseasonData(month){
+  fetchPosts(month){
     let seasonMsg, seasonTag;
 
     if (month === 12 || month === 1 || month === 2) {
@@ -78,22 +44,43 @@ class Home extends React.Component {
       seasonTag = settings.lifestylePostCategory;
     }
 
-    Axios
-    .get(settings.domain + '/wp-json/wp/v2/posts/?tags=' + seasonTag)
-    .then(response => {
-      const slicedResp = response.data.slice(0,3);
-      const posts = [];
-      for(let post of slicedResp){
-        posts.push(post);
+    Axios.all([
+      Axios.get(settings.domain + '/wp-json/wp/v2/posts/'),
+      Axios.get(settings.domain + '/wp-json/wp/v2/posts/?categories=' + settings.babyPostCategory),
+      Axios.get(settings.domain + '/wp-json/wp/v2/posts/?tags=' + seasonTag)
+    ])
+    .then(Axios.spread((newPosts, babyPosts, seasonPosts) => {
+      const slicedNewPosts = newPosts.data.slice(0,6);
+      const slicedBabyPosts = babyPosts.data.slice(0,3);
+      const slicedSeasonPosts = seasonPosts.data.slice(0,3);
+
+      const newPostsArr = [];
+      const babyPostsArr = [];
+      const seasonPostsArr = [];
+
+      for(let newPost of slicedNewPosts){
+        newPostsArr.push(newPost);
       }
-      this.setState({seasonPosts: posts})
-      this.setState({seasonMsg: seasonMsg})
-    })
+
+      for(let babyPost of slicedBabyPosts){
+        babyPostsArr.push(babyPost);
+      }
+
+      for(let seasonPost of slicedSeasonPosts){
+        seasonPostsArr.push(seasonPost);
+      }
+
+      this.setState({
+        newPosts: newPostsArr,
+        babyPosts: babyPostsArr,
+        seasonPosts: seasonPostsArr,
+        seasonMsg: seasonMsg
+      })
+    }))
     .catch(err => {
       console.log(err.message);
     });
   }
-
 
   render(){
       return (
