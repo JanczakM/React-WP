@@ -80,10 +80,10 @@ class Single extends React.Component {
           </div>
           <div className='single-content'>{this.state.content}</div>
         </main>
-        <aside className='container-single single-content p-bottom'>
-          {this.state.similarPosts.length > 0 ? <h2 className='headers'>Podobne wpisy:</h2> : ''}
-          {this.state.similarPosts.length > 0 ? <SimilarPosts {...this.state.similarPosts} /> : ''}
-        </aside>
+          <aside className='container-single single-content p-bottom'>
+            {this.state.similarPosts.length > 0 ? <h2 className='headers'>Podobne wpisy:</h2> : ''}
+            {this.state.similarPosts.length > 0 ? <SimilarPosts {...this.state.similarPosts} /> : ''}
+          </aside>
         <Footer />
       </div>
       )
