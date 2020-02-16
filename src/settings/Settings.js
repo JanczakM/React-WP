@@ -1,11 +1,11 @@
 export const settings = {
   wordpressLink : '/wordpress/', // Leave only '/' for production and /wordpress/ for development
-  domain : 'https://aktywnepodroze.pl',
-  title: 'aktywne podróże',
-  mainphoto : 'https://aktywnepodroze.pl/wp-content/uploads/2018/09/cropped-IMAG4159_1.jpg',
-  mainphotoAlt: 'widok na morze',
+  domain : 'https://yourdomain.com',
+  title: 'domain title',
+  mainphoto : 'image.jpg',
+  mainphotoAlt: 'main image alt',
   analytics : 'UA-XXXXXXX',
-  email : 'kontakt@aktywnepodroze.pl',
+  email : 'contact@yourdomain.com',
   cookiePolicySite : 'polityka-plikow-cookies',
   cooperationSite : 'wspolpraca',
   babyPostCategory : 137,
@@ -15,6 +15,6 @@ export const settings = {
   lifestylePostCategory : 140,
   adSenseClient: 'ca-pub-xxx',
   adSenseSlot: '111111',
-  facebookLink: 'https://facebook.com/aktywnepodroze',
-  instagramLink: 'https://www.instagram.com/aktywnepodroze.pl/',
+  facebookLink: 'https://facebook.com/yoursite',
+  instagramLink: 'https://www.instagram.com/yoursite/',
 }
